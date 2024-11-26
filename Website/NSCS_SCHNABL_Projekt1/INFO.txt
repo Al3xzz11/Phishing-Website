@@ -1,0 +1,4 @@
+Ich empfehle Ihnen zum Öffnen des Praxisbeispiel Webstorm zu benutzen, da ich es darin auch gecoded habe.
+Die Website lädt auch nur, wenn man im gleichen Netz wie der Server ist.
+
+Ebenfalls könnte es sein, dass der QR Code nicht mehr funktioniert, da er abgelaufen ist. Jedoch werde ich am Tag der Präsentation zur Sicherheit einen neuen machen.
